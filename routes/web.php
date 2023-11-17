@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,6 @@ Route::middleware('auth')->group(function () {
 });
 
 // Live preview pages
-Route::get('/preview/page', function () { return view('preview.page'); })->name('preview');
+Route::get('/preview/page/{entryId}', [PreviewController::class, 'previewPage'])->name('preview.page');
 
 require __DIR__.'/auth.php';

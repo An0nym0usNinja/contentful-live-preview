@@ -1,13 +1,14 @@
 <x-guest-layout>
-    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('Preview page header') }}
-    </h2>
+    @section('head')
+        <script type="text/javascript">
+            let entryId = "{{ $entryId }}";
+            let spaceId = "{{ env('CONTENTFUL_SPACE_ID') }}";
+            let accessToken = "{{ env('CONTENTFUL_ACCESS_TOKEN') }}";
+        </script>
+        @vite('resources/js/live-preview.js')
+    @endsection
 
-    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('Preview page content') }}
-    </h2>
-
-    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('Preview page header') }}
-    </h2>
+    <h1 class="h1" data-contentful-entry-id="{{ $entryId }}" data-contentful-field-id="title"></h1>
+    <h1 class="h1" data-contentful-entry-id="{{ $entryId }}" data-contentful-field-id="slug"></h1>
+    <h1 class="h1" data-contentful-entry-id="{{ $entryId }}" data-contentful-field-id="content"></h1>
 </x-guest-layout>

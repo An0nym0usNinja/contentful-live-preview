@@ -1,12 +1,11 @@
 import { ContentfulLivePreview } from '@contentful/live-preview';
 import { createClient } from 'contentful';
-import dotenv from 'dotenv';
 
 // Configuration object
 const CONFIG = {
   locale: 'en-US',
-  entryId: 'W9z8t0uXz3CMFjp4sw5zj',
-  fields: ['title'],
+  entryId: entryId,
+  fields: ['title', 'slug', 'content'],
   subscriptions: [],
   debugMode: true,
 };
@@ -14,11 +13,11 @@ const CONFIG = {
 document.addEventListener('DOMContentLoaded', initialize);
 
 function initialize() {
-  dotenv.config();
-
+  console.log('Initializing Contentful Live Preview...');
+  console.log(accessToken);
   const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    space: spaceId,
+    accessToken: accessToken,
     host: 'preview.contentful.com',
   });
 
@@ -33,6 +32,8 @@ function initialize() {
       });
     })
     .catch((err) => console.error(err));
+
+  console.log(client);
 }
 
 function findElementByDataAttributes(entryId, fieldId) {
